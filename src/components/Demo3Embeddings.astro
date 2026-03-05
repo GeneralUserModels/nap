@@ -2,8 +2,7 @@
 ---
 <section class="demo-embeddings" id="demo-embeddings">
   <div class="container--wide">
-    <p class="section-label fade-up">PowerNAP</p>
-    <h2 class="fade-up">Learning Online</h2>
+    <h2 class="fade-up">Learning Online with <span class="accent">PowerNAP</span></h2>
     <p class="demo-embeddings__intro fade-up">
       Instead of storing data and training offline with multiple epochs, we can convert the entire pipeline to run online. In PowerNAP, NAPSack and LongNAP operate asynchronously: NAPSack continuously tracks and labels user actions, enqueueing them for training, while LongNAP consumes labeled actions from the queue and trains on them in a single pass. Crucially, memory is never reset and reasoning traces accumulate, allowing the model to continually build a better representation of the user over time. Explore the embedding space of 7,852 action sequences below.
     </p>
@@ -36,6 +35,10 @@
 </section>
 
 <style>
+  .accent {
+    color: var(--color-primary);
+  }
+
   .demo-embeddings {
     padding: var(--space-xl) 0;
   }
