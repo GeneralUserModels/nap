@@ -3,8 +3,7 @@ const base = import.meta.env.BASE_URL;
 ---
 <section class="demo-predictions" id="demo-predictions">
   <div class="container--wide">
-    <p class="section-label fade-up">LongNAP</p>
-    <h2 class="fade-up">Reason, Retrieve, Predict</h2>
+    <h2 class="fade-up">Reason, Retrieve, and Predict with <span class="accent">LongNAP</span></h2>
 
     <div class="demo-predictions__hero fade-up">
       <div class="demo-predictions__hero-text">
@@ -44,6 +43,10 @@ const base = import.meta.env.BASE_URL;
 </section>
 
 <style>
+  .accent {
+    color: var(--color-primary);
+  }
+
   .demo-predictions {
     background: var(--color-surface);
     border-top: 1px solid var(--color-tertiary);

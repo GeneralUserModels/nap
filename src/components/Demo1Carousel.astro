@@ -2,10 +2,9 @@
 ---
 <section class="demo-napsack" id="demo-carousel">
   <div class="container--wide">
-    <p class="section-label fade-up">NAPSack</p>
-    <h2 class="fade-up">Labeling Interaction Data</h2>
+    <h2 class="fade-up">Labeling Interaction Data with <span class="accent">NAPsack</span></h2>
     <p class="demo-napsack__intro fade-up">
-      NAPSack is a lightweight, passive tool for collecting labeled interaction data at scale. It continuously records screenshots, groups interactions into bursts of adjacent events, compresses via heuristic filtering (reducing storage by approximately 70% without compromising quality), and annotates the resulting records with a VLM. We apply NAPSack to the Screenomics dataset, labeling over 360K actions across a month of continuous phone usage from 20 users (1.8K hours of screen time). Below, watch a labeled session play back.
+      NAPSack is a lightweight, passive tool for collecting labeled interaction data at scale. It continuously records screenshots, groups interactions into bursts of adjacent events, compresses by saving frames only when a user interacts with their computer (reducing storage by approximately 70% without compromising quality), and annotates the resulting records with a VLM. We apply NAPSack to the Screenomics dataset, labeling over 360K actions across a month of continuous phone usage from 20 users (1.8K hours of screen time). Below, watch a labeled session play back.
     </p>
   </div>
 
@@ -46,6 +45,10 @@
 </section>
 
 <style>
+  .accent {
+    color: var(--color-primary);
+  }
+
   .demo-napsack {
     padding: var(--space-xl) 0;
   }
