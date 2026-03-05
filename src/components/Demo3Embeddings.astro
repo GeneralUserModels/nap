@@ -1,0 +1,207 @@
+---
+---
+<section class="demo-embeddings" id="demo-embeddings">
+  <div class="container--wide">
+    <p class="section-label fade-up">PowerNAP</p>
+    <h2 class="fade-up">Learning Online</h2>
+    <p class="demo-embeddings__intro fade-up">
+      Instead of storing data and training offline with multiple epochs, we can convert the entire pipeline to run online. In PowerNAP, NAPSack and LongNAP operate asynchronously: NAPSack continuously tracks and labels user actions, enqueueing them for training, while LongNAP consumes labeled actions from the queue and trains on them in a single pass. Crucially, memory is never reset and reasoning traces accumulate, allowing the model to continually build a better representation of the user over time. Explore the embedding space of 7,852 action sequences below.
+    </p>
+  </div>
+
+  <div class="container--full">
+    <div class="embeddings-wrapper fade-up">
+      <div class="embeddings-main">
+        <canvas id="scatter-canvas" width="900" height="380"></canvas>
+        <div class="detail-panel" id="detail-panel">
+          <div class="detail-panel__header">
+            <span class="detail-panel__cluster" id="detail-cluster"></span>
+            <button class="detail-panel__close" id="detail-close" aria-label="Close">&times;</button>
+          </div>
+          <div class="detail-panel__body" id="detail-body"></div>
+        </div>
+      </div>
+      <div class="embeddings-sidebar">
+        <div class="embeddings-legend" id="embeddings-legend">
+          <h4>Clusters</h4>
+          <!-- Legend items injected by JS -->
+        </div>
+        <div class="embeddings-stats" id="embeddings-stats">
+          <p><strong>Points:</strong> <span id="stat-points">—</span></p>
+          <p><strong>Clusters:</strong> <span id="stat-clusters">—</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .demo-embeddings {
+    padding: var(--space-xl) 0;
+  }
+
+  .demo-embeddings__intro {
+    font-size: var(--fs-sm);
+    line-height: 1.65;
+    margin-bottom: var(--space-lg);
+    opacity: 0.85;
+  }
+
+  .embeddings-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .embeddings-main {
+    position: relative;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+
+  #scatter-canvas {
+    width: 100%;
+    height: auto;
+    cursor: crosshair;
+  }
+
+  .detail-panel {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    width: 340px;
+    max-height: 400px;
+    display: none;
+    flex-direction: column;
+    background: rgba(44, 44, 44, 0.95);
+    color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    z-index: 10;
+    font-size: var(--fs-sm);
+    line-height: 1.6;
+  }
+
+  .detail-panel.open {
+    display: flex;
+  }
+
+  .detail-panel__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    flex-shrink: 0;
+  }
+
+  .detail-panel__cluster {
+    font-weight: 600;
+    flex: 1;
+  }
+
+  .detail-panel__close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+  }
+
+  .detail-panel__close:hover {
+    opacity: 1;
+  }
+
+  .detail-panel__body {
+    padding: var(--space-sm) var(--space-md) var(--space-md);
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: var(--fs-xs);
+  }
+
+  .embeddings-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    min-height: 0;
+    overflow: hidden;
+    max-height: 380px;
+  }
+
+  .embeddings-legend {
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-sm);
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  .embeddings-legend h4 {
+    margin-bottom: var(--space-sm);
+    font-size: var(--fs-xs);
+  }
+
+  .embeddings-legend :global(.legend-item) {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 1px 0;
+    font-size: 0.65rem;
+  }
+
+  .embeddings-legend :global(.legend-dot) {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .embeddings-stats {
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-sm);
+    font-size: var(--fs-sm);
+    flex-shrink: 0;
+  }
+
+  .embeddings-stats p {
+    margin-bottom: var(--space-xs);
+  }
+
+  @media (max-width: 768px) {
+    .embeddings-wrapper {
+      grid-template-columns: 1fr;
+    }
+
+    .embeddings-sidebar {
+      flex-direction: row;
+      flex-wrap: wrap;
+      overflow: visible;
+      min-height: unset;
+      max-height: unset;
+    }
+
+    .embeddings-legend {
+      min-height: unset;
+      overflow-y: visible;
+    }
+
+    .embeddings-sidebar > * {
+      flex: 1;
+      min-width: 140px;
+    }
+  }
+</style>
+
+<script src="../scripts/embeddings.js"></script>

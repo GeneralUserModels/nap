@@ -1,0 +1,114 @@
+[
+  {
+    "utility": 0.65,
+    "predicted_actions": [
+      "Pasted the text \"\\section{Next Action Prediction}\" onto line 11 of 02_related_work.tex.",
+      "Scrolled through the \"02_related_work.tex\" file in Overleaf.",
+      "Clicked on the file \"01_introduction.tex\" in the Overleaf file outline.",
+      "Scrolled through the \"01_introduction.tex\" file in Overleaf.",
+      "Switched to the \"introduction\" tab in Google Chrome.",
+      "Switched back to the \"01_introduction.tex\" file in Overleaf.",
+      "Clicked the candy bar icon in the Overleaf file outline to collapse the structure.",
+      "Replaced the text \"\\needspace{35mm}\" with \"\\needspace{15mm}\" on line 1 of \"04_methods.tex\" in Overleaf."
+    ],
+    "true_labels": [
+      "Pasted the text \"\\section{Next Action Prediction}\" onto line 12 of 02_related_work.tex after inserting a new line.",
+      "Clicked the \"Close\" (X) button on the Find and Replace bar.",
+      "Clicked the \"Recompile\" button in the Overleaf project.",
+      "Scrolled through the PDF preview in the Overleaf project.",
+      "Clicked in the editor area of \"03_task_def.tex\" in Overleaf.",
+      "Scrolled through the document in the Overleaf project.",
+      "Clicked on the file \"03_task_def.tex\" in the Overleaf file outline.",
+      "Triple-clicked to select the text \"\\section{Next Action Prediction}\" on line 53 of 03_task_def.tex in Overleaf."
+    ],
+    "revise_reasoning": "<revise>\nThe user searches for \"strategies\" in main.tex and finds multiple instances, illustrating a need for systematic content restructuring. This process is followed by editing tasks involving \"long context\" and \"temporal alignment\", contributing to a broader strategy of document refinement. Finally, a workflow focusing on practical tasks is set up on Overleaf, completing the document's creation cycle.\n</revise>",
+    "screenshots": [
+      "/data/demo2/screenshots/000.jpg"
+    ],
+    "time_range": "2026-02-10 12:45 \u2014 2026-02-10 12:47"
+  },
+  {
+    "utility": 0.54,
+    "predicted_actions": [
+      "Scrolled down through the charts in the Weights & Biases dashboard.",
+      "Scrolled through the training runs in the Weights & Biases dashboard.",
+      "Clicked on the \"train/loss\" chart in the Weights & Biases dashboard to enter the \"Chart settings\".",
+      "Selected \"Mode\" > \"Latest\" from the \"Window\" dropdown in the chart settings panel and closed the panel by clicking the \"Close\" button.",
+      "Switched to the YouTube tab in Chrome titled \"NAP Lab does: writing a paper together on Optimize Your Thesis.pdf runs in ~14 seconds! - YouTube\".",
+      "Pressed the Space bar to pause the video on YouTube.",
+      "Clicked on the Weights & Biases tab in Chrome.",
+      "Scrolled through the charts on the Weights & Biases dashboard."
+    ],
+    "true_labels": [
+      "Scrolled down through the charts in the Weights & Biases dashboard.",
+      "Clicked the \"+ Add panels\" button in the Weights & Biases dashboard.",
+      "Clicked on the \"train/loss\" chart in the Weights & Biases dashboard.",
+      "Scrolled through the Weights & Biases dashboard in the Chrome browser.",
+      "Switched to the \"NAP Time - Online LaTeX Editor\" tab in Chrome.",
+      "Scrolled through the LaTeX document in the Overleaf editor.",
+      "Switched to the terminal tab in Chrome.",
+      "Ran the commands \"git status\", \"git add src/\", \"git commit -m \\\"fix overlay\\\"\", and \"git push\" in the terminal."
+    ],
+    "revise_reasoning": "<revise>\nThe user clicked on the \"t20\" link to toggle standings, then clicked \"STANDINGS\". The \"t20\" link was clicked again, and the \"STANDINGS\" link was clicked to return to the standings table. The user scrolled through the standings table, viewed the \"t20\" link, and switched to the Twitter tab by clicking it. The Twitter sidebar was inspected, but nothing was clicked. The Spotlight search using 's' was opened. The Twitter home page was scrolled through. The title \"Maleficent - Skies of doubt\" was searched in Weights & Biases and applied. The sidebar on the Weights & Biases page was scrolled through. The page was scrolled through, but no changes were made.</revise>\n\n",
+    "screenshots": [
+      "/data/demo2/screenshots/001.jpg"
+    ],
+    "time_range": "2026-02-06 19:04 \u2014 2026-02-06 19:55"
+  },
+  {
+    "utility": 0.53,
+    "predicted_actions": [
+      "Clicked on the text box containing \"<think> to retrieve\" in the Google Doc \"nap-front\".",
+      "Clicked on the \"some context with screenshots / <1,2,3,4,5> text\" text box in the Google Doc \"NAP-front\".",
+      "Switched to the Google Doc titled \"Models, Primitives, and Aggregation\".",
+      "Switched to the Google Doc titled \"NAP-front\".",
+      "Replaced \"some context\" with \"context\" in the text box on the \"True Actions\" slide and clicked on the text box.",
+      "Typed \".description\" into the text box containing \"context\" in the Google Doc \"NAP-front\".",
+      "Clicked on the \"True Actions\" text box in the Google Doc \"NAP-front\".",
+      "Triple-clicked to select text in the \"True Actions\" text box in the Google Doc \"NAP-front\"."
+    ],
+    "true_labels": [
+      "Clicked on the border of the text box containing \"<think> to retrieve\" in the Google Doc \"nap-front\".",
+      "Clicked on the text box containing \"Reward(predicted action| other predicted actions, true action)\" in the Google Doc \"nap-front\".",
+      "Clicked on the text box containing \"Predicted Actions\" in the Google Doc \"nap-front\".",
+      "Clicked on the border of the text box containing \"Predicted Actions\" in the Google Doc \"nap-front\".",
+      "Clicked on the text box containing \"Save best thoughts\" in the Google Doc \"nap-front\".",
+      "Clicked on the text box containing \"Save best thoughts\" and pressed Enter in the Google Doc \"nap-front\".",
+      "Clicked on the text box containing \"<think>\" in the Google Doc \"nap-front\".",
+      "Clicked on the text box containing \"Save best thoughts\" in the Google Doc \"nap-front\"."
+    ],
+    "revise_reasoning": "<revise>\nThe user first views the Google Doc. Upon clicking the link in the browser, the user anonreviews the document titled \"Clause: 2024-02-13 - Overleaf Project\". The user scrolls through the project details. The user closes the project tab, selects the \"how_much...1\" project, and then closes it. The user switches to the Overleaf project initially viewed. The user scrolls through the project overview. The user reloads the page. A feedback dialog for errored sections appears on the document editing tab. The user closes the document using the close button. The user then selects \"Location-SaaS\" from the list of projects. The user then views the \"nap-front\" Google Doc. The user closes this document tab. The user switches to the Google Docs home page and performs a new tab search for \"startups looking for founders\". The user opens the search results and clicks on \"Startup Founders and Speakers Search - Founders List\". The user inspects a browser tab and which a list of founders from startups is visible. The user navigates back to the Google Doc \"nap-front\" project.\n</revise>",
+    "screenshots": [
+      "/data/demo2/screenshots/002.jpg"
+    ],
+    "time_range": "2026-02-09 14:07 \u2014 2026-02-09 14:07"
+  },
+  {
+    "utility": 0.52,
+    "predicted_actions": [
+      "Typed \"yeah. this is looking really nice\" into the message box in Slack and pressed Enter.",
+      "Opened a new tab in Chrome and switched to the Search tab.",
+      "Switched to the Gmail tab in Chrome.",
+      "Deleted the email from \"ChatGPT\" in the Gmail inbox.",
+      "Switched to the Twitter tab in Chrome.",
+      "Closed the Twitter tab in Chrome.",
+      "Switched to the Google search results tab for \"kumar\" in Chrome.",
+      "Scrolled through the Google search results for \"India Kumar\"."
+    ],
+    "true_labels": [
+      "Typed \"there was no bug. lol. might have been something weird with switching\" in the Slack message box and pressed Enter.",
+      "Typed \"like my cursor on one screen typing in another\" in the Slack message box and pressed Enter.",
+      "Clicked on a message in the Slack conversation with Omar Shaikh.",
+      "Switched to the X (Twitter) tab in the web browser.",
+      "Clicked the back button in the web browser multiple times to return to the home feed.",
+      "Clicked outside the current window.",
+      "Switched to the Gmail tab in the web browser.",
+      "Clicked outside the current window."
+    ],
+    "revise_reasoning": "<revise>\nThe user was exploring the AI Arena for grand finals and comparing different procedures. They switched applications from browser to Slack between Paul Dawson, Robert Robins, and Kanishkg Stand**** to conduct a discussion about the AI Arena. The user had edited an adjustment to a similar data issue with the AI Arena runnable, now focused on the inference period for computing and could utilize this as a tie-breaker.\n\nThe user later toggled between frontend and backend systems, primarily editing the details for a Database design using service name transformations like \"wallet\", \"freelance\", and \"app\". The discussion involved AI Arena-related details, such as retrieving data for specific input parameters like \"data transfer rate\" and \"application context\".\n\nThe user then switched to the Outlook inbox in the browser to check email from Olivia Claudie, Robert Robins, and Gijiackamura about application updates and possible blockchain issues. The user then clicked on an email from Alan Marriott to open the message.\n\nThe user navigated through different samples and reference text in the Arts-based Instruments repository and selected a pdf documentport of a topic from Caleb Francis Joseph Yuen to further study the subject.\n</revise>",
+    "screenshots": [
+      "/data/demo2/screenshots/003.jpg"
+    ],
+    "time_range": "2026-02-06 10:34 \u2014 2026-02-06 10:35"
+  }
+]

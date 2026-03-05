@@ -1,0 +1,49 @@
+---
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__inner">
+      <p class="site-footer__affiliation">Stanford University</p>
+      <div class="site-footer__links">
+        <a href="https://arxiv.org/abs/2601.04436" target="_blank" rel="noopener">arXiv</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: var(--space-xl) 0;
+    border-top: 1px solid var(--color-tertiary);
+  }
+
+  .site-footer__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--fs-sm);
+    opacity: 0.6;
+  }
+
+  .site-footer__links {
+    display: flex;
+    gap: var(--space-lg);
+  }
+
+  .site-footer__links a {
+    color: var(--color-text);
+    transition: opacity 0.2s;
+  }
+
+  .site-footer__links a:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 480px) {
+    .site-footer__inner {
+      flex-direction: column;
+      gap: var(--space-sm);
+      text-align: center;
+    }
+  }
+</style>

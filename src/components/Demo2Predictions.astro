@@ -1,0 +1,272 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<section class="demo-predictions" id="demo-predictions">
+  <div class="container--wide">
+    <p class="section-label fade-up">LongNAP</p>
+    <h2 class="fade-up">Reason, Retrieve, Predict</h2>
+
+    <div class="demo-predictions__hero fade-up">
+      <div class="demo-predictions__hero-text">
+        <p class="demo-predictions__intro">
+          Rather than relying solely on parametric or in-context learning, we train models that <em>learn</em> to retrieve relevant past reasoning and observations into context. We instantiate this in LongNAP, a two-phase model trained end-to-end via policy gradients.
+        </p>
+        <p class="demo-predictions__intro">
+          In the first phase, LongNAP <strong>reasons to retrieve</strong>: the model generates a chain-of-thought, then uses it to query a memory of past observations via BM25. In the second phase, LongNAP <strong>reasons to predict</strong>: integrating retrieved traces to refine its reasoning and predict concrete future actions. Traces that lead to good predictions are saved back into memory, so the library improves over time.
+        </p>
+        <p class="demo-predictions__intro">
+          To score predictions, we use a <strong>temporal reward</strong>: since we can just wait and see what the user actually does, an LLM judge measures similarity between predicted and actual future actions. This lets us optimize both stages end-to-end through GRPO.
+        </p>
+        <div class="demo-predictions__results">
+          <p class="demo-predictions__results-text">
+            LongNAP significantly outperforms supervised finetuning (by <strong>79%</strong>) and prompted baselines (by <strong>39%</strong>). <strong>17.1%</strong> pass@1, rising to <strong>36.3%</strong> pass@20.
+          </p>
+        </div>
+      </div>
+      <figure class="demo-predictions__hero-figure">
+        <img src={`${base}figures/fig2.jpg`} alt="LongNAP two-phase pipeline: reason-to-retrieve followed by reason-to-predict, optimized end-to-end with GRPO." loading="lazy" />
+
+      </figure>
+    </div>
+
+  </div>
+
+  <div class="container--full">
+    <div class="predictions-grid" id="predictions-grid">
+      <!-- Cards injected by JS -->
+    </div>
+    <div class="carousel-nav fade-up" id="carousel-nav">
+      <button class="carousel-nav__btn" id="carousel-prev" aria-label="Previous card">&larr; Prev</button>
+      <span class="carousel-nav__counter" id="carousel-counter">1 / 8</span>
+      <button class="carousel-nav__btn" id="carousel-next" aria-label="Next card">Next &rarr;</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .demo-predictions {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-tertiary);
+    border-bottom: 1px solid var(--color-tertiary);
+    padding: var(--space-xl) 0;
+  }
+
+  .demo-predictions__intro {
+    font-size: var(--fs-sm);
+    line-height: 1.65;
+    margin-bottom: var(--space-sm);
+    opacity: 0.85;
+  }
+
+  .demo-predictions__hero {
+    display: grid;
+    grid-template-columns: 1fr 520px;
+    gap: var(--space-xl);
+    align-items: start;
+    margin-bottom: var(--space-lg);
+  }
+
+  .demo-predictions__hero-figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .demo-predictions__results {
+    background: linear-gradient(135deg, rgba(129, 154, 145, 0.12), rgba(167, 193, 168, 0.12));
+    border-left: 4px solid var(--color-primary);
+    border-radius: var(--radius);
+    padding: var(--space-sm) var(--space-md);
+    margin-top: var(--space-sm);
+  }
+
+  .demo-predictions__results-text {
+    font-size: var(--fs-sm);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+
+  @media (max-width: 768px) {
+    .demo-predictions__hero {
+      grid-template-columns: 1fr;
+    }
+    .predictions-grid :global(.pred-card__body) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Carousel navigation */
+  .carousel-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .carousel-nav__btn {
+    padding: var(--space-xs) var(--space-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-tertiary);
+    border-radius: var(--radius);
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .carousel-nav__btn:hover {
+    border-color: var(--color-primary);
+  }
+
+  .carousel-nav__btn:active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+
+  .carousel-nav__counter {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    min-width: 3rem;
+    text-align: center;
+  }
+
+  /* Hide all cards by default; show only the active one */
+  .predictions-grid :global(.pred-card) {
+    display: none;
+  }
+
+  .predictions-grid :global(.pred-card.active) {
+    display: block;
+  }
+
+  .predictions-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .predictions-grid :global(.pred-card) {
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s;
+  }
+
+  .predictions-grid :global(.pred-card:hover) {
+    box-shadow: var(--shadow-md);
+  }
+
+  .predictions-grid :global(.pred-card__header) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--color-tertiary);
+  }
+
+  .predictions-grid :global(.pred-card__time) {
+    font-size: var(--fs-sm);
+    color: var(--color-text);
+    opacity: 0.6;
+  }
+
+  .predictions-grid :global(.pred-card__utility) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--radius);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+  }
+
+  .predictions-grid :global(.pred-card__body) {
+    padding: var(--space-sm) var(--space-md);
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    gap: var(--space-md);
+    align-items: start;
+  }
+
+  .predictions-grid :global(.pred-card__screenshot) {
+    border-radius: var(--radius);
+    width: 100%;
+    height: auto;
+    background: var(--color-tertiary);
+  }
+
+  .predictions-grid :global(.pred-card__columns) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .predictions-grid :global(.pred-card__col-label) {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-sm);
+    color: var(--color-primary);
+  }
+
+  .predictions-grid :global(.pred-card__actions) {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    scrollbar-width: auto;
+    scrollbar-color: rgba(129, 154, 145, 0.4) rgba(129, 154, 145, 0.08);
+  }
+
+  .predictions-grid :global(.pred-card__actions::-webkit-scrollbar) {
+    width: 6px;
+    -webkit-appearance: none;
+  }
+
+  .predictions-grid :global(.pred-card__actions::-webkit-scrollbar-track) {
+    background: rgba(129, 154, 145, 0.08);
+    border-radius: 3px;
+  }
+
+  .predictions-grid :global(.pred-card__actions::-webkit-scrollbar-thumb) {
+    background: rgba(129, 154, 145, 0.4);
+    border-radius: 3px;
+  }
+
+  .predictions-grid :global(.pred-card__actions li) {
+    padding: 2px var(--space-sm);
+    border-radius: var(--radius);
+    font-size: var(--fs-xs);
+    line-height: 1.4;
+  }
+
+  .predictions-grid :global(.pred-card__actions--predicted li) {
+    background: rgba(129, 154, 145, 0.12);
+    border-left: 3px solid var(--color-primary);
+  }
+
+  .predictions-grid :global(.pred-card__actions--true li) {
+    background: rgba(238, 239, 224, 0.6);
+    border-left: 3px solid var(--color-tertiary);
+  }
+
+
+  @media (max-width: 768px) {
+    .predictions-grid :global(.pred-card__columns) {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script src="../scripts/predictions.js"></script>

@@ -1,0 +1,92 @@
+---
+const bibtex = `@article{shaikh2026nap,
+  title={Learning Next Action Predictors from Human-Computer Interaction},
+  author={Shaikh, Omar and Teutschbein, Valentin and Gandhi, Kanishk and Chi, Yikun and Haber, Nick and Robinson, Thomas and Ram, Nilam and Reeves, Byron and Yang, Sherry and Bernstein, Michael and Yang, Diyi},
+  journal={arXiv preprint arXiv:2601.04436},
+  year={2026}
+}`;
+---
+<section class="bibtex-section" id="cite">
+  <div class="container">
+    <p class="section-label fade-up">Citation</p>
+    <h2 class="fade-up">Cite This Work</h2>
+
+    <div class="bibtex-card fade-up">
+      <pre class="bibtex-code" id="bibtex-code"><code>{bibtex}</code></pre>
+      <button class="bibtex-copy" id="bibtex-copy" aria-label="Copy BibTeX">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bibtex-section {
+    padding: var(--space-4xl) 0;
+  }
+
+  .bibtex-card {
+    position: relative;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+
+  .bibtex-code {
+    padding: var(--space-lg) var(--space-xl);
+    margin: 0;
+    overflow-x: auto;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: var(--fs-sm);
+    line-height: 1.6;
+    color: var(--color-text);
+    background: var(--color-surface);
+  }
+
+  .bibtex-copy {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--color-bg);
+    border: 1px solid var(--color-tertiary);
+    border-radius: var(--radius);
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .bibtex-copy:hover {
+    background: var(--color-tertiary);
+  }
+
+  .bibtex-copy.copied {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('bibtex-copy');
+  const code = document.getElementById('bibtex-code');
+  if (btn && code) {
+    btn.addEventListener('click', async () => {
+      const text = code.textContent || '';
+      await navigator.clipboard.writeText(text.trim());
+      btn.classList.add('copied');
+      btn.querySelector('span')!.textContent = 'Copied!';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.querySelector('span')!.textContent = 'Copy';
+      }, 2000);
+    });
+  }
+</script>

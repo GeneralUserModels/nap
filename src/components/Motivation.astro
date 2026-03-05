@@ -1,0 +1,51 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<section class="motivation" id="motivation">
+  <div class="container">
+    <h2 class="fade-up">What Will You Do Next?</h2>
+
+    <p class="motivation__text fade-up">
+      Language models today are hopelessly restricted to seeing us through a narrow keyhole. They see our prompts, and they construct memories to make sense of them. But they know nothing of what brought us to them in the first place. Truly context-aware AIs should understand us deeply: what problems we're solving, what constraints we face, and how we act in the world.
+    </p>
+
+    <p class="motivation__text fade-up">
+      We formalize this as <strong>next action prediction</strong> (NAP): given a sequence of a user's multimodal interactions with a computer (screenshots, keystrokes, clicks), predict their next action. A researcher reads paper reviews; a good predictor should reason over this and over the user's past habits to predict they will check experiments on Weights &amp; Biases, then message coauthors on Slack to divide up revisions.
+    </p>
+
+    <figure class="motivation__figure fade-up">
+      <img src={`${base}figures/fig2_other.jpg`} alt="Long-Context Next Action Predictors draw from the entirety of a user's multimodal context, retrieving over an unbounded history, to predict what they will do next." loading="lazy" />
+    </figure>
+
+    <p class="motivation__text fade-up">
+      We make progress on two fronts. <strong>NAPSack</strong> passively collects and labels interaction data at scale. <strong>LongNAP</strong> combines parametric and in-context learning, trained end-to-end to retrieve relevant past reasoning and predict future actions. The temporal structure of behavior provides a natural training signal: just wait and see what the user actually does.
+    </p>
+  </div>
+</section>
+
+<style>
+  .motivation {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-tertiary);
+    border-bottom: 1px solid var(--color-tertiary);
+    padding: var(--space-xl) 0;
+  }
+
+  .motivation__text {
+    font-size: var(--fs-sm);
+    line-height: 1.65;
+    opacity: 0.85;
+    margin-bottom: var(--space-sm);
+  }
+
+  .motivation__figure {
+    margin: var(--space-md) 0;
+  }
+
+  .motivation__figure img {
+    width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
+  }
+</style>

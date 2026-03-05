@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Motivation from '../components/Motivation.astro';
+import Demo1Carousel from '../components/Demo1Carousel.astro';
+import Demo2Predictions from '../components/Demo2Predictions.astro';
+import Demo3Embeddings from '../components/Demo3Embeddings.astro';
+import BibTeX from '../components/BibTeX.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout>
+  <Hero />
+  <Motivation />
+  <div id="demos">
+    <Demo1Carousel />
+    <Demo2Predictions />
+    <Demo3Embeddings />
+  </div>
+  <div id="paper">
+    <BibTeX />
+  </div>
+  <Footer />
+</BaseLayout>
